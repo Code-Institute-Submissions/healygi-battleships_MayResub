@@ -21,6 +21,12 @@ class Board:
         self.ships = []
 
     def print(self):
+        for row in self.board:
+            print(" ".join(row)
+            
+    def guesses.append((x, y))
+        self.guesses.append((x, y))
+        self.board[x][y] = "x"
 
 
 
