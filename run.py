@@ -1,9 +1,27 @@
 from random import randint
 
+"""
 #Create variable to make board and store ships
-board = [[" "] * 8 for x in range(8)]
-#Creat variable to display misses and hits
-hidden_board =  [[" "] * 8 for i in range(8)]
+board = [[" "] * 4 for x in range(8)]
+#Create variable to display misses and hits
+hidden_board =  [[" "] * 4 for i in range(8)]
+print(board)
+"""
 
-def create_board(board):
-    print(create_board(board))
+class Board:
+
+    def __init__(self, size, ships, name, type):
+        """Initialize board attrubutes"""
+        self.size = size
+        self.num_ships = num_ships
+        self.board = [["." for x in range(size)] for y in range(size)]
+        self.name = name 
+        self.type = type 
+        self.guesses = []
+        self.ships = []
+
+    def print(self):
+
+
+
+
