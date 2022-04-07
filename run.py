@@ -116,8 +116,8 @@ def start_game():
         populate_board(player_board)
         populate_board(computer_board)
     
-    play_game(computer_board, player_board)
+  #  play_game(computer_board, player_board)
 
-start_game()
+#start_game()
    
 
