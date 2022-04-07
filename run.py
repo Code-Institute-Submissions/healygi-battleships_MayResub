@@ -3,22 +3,23 @@ from random import randint
 scores = {"computer": 0, "player": 0}
 #Create greeting message for player
 
-greeting = "Welcome to battlships- play against the computer and be the first to sink all 5 of your opponent's ships."
+greeting = "Welcome to battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
 print(greeting)
 
-#Ask for players name
+#ask for players name
 
 name = input("What is your name Comrade? " )
 print("Hello " + name )
 print("lets set out to sea and destroy the computers ships!!")
 
 # Instructions on how to play
-
+"""
 #Create variable to make board and store ships
 board = [[" "] * 4 for x in range(8)]
 #Create variable to display misses and hits
 hidden_board =  [[" "] * 4 for i in range(8)]
 print(board)
+"""
 
 class Board:
 
@@ -64,8 +65,14 @@ def valid_coordinates(x, y, board):
     #valid dates coorendates input to make sure if they have 
     already been guessed or not outside the coordinates of our board
 
+"""
 def populate_board(board):
+         self.board = [["." for x in range(size)] for y in range(size)]
+         populate_board()
 
+
+
+"""
 def make_guess(board):
     #processes the guesses- if it is a computer guess does exactly
     the same thing it did when it populated the board 
@@ -89,7 +96,7 @@ def start_game():
     scores["computer"] = 0
     scores["player"] = 0
     print("-" * 35)
-    print(f" Board Size: {size}. Number of ships: {num_ships}")
+    print(f"Board Size: {size}. Number of ships: {num_ships}")
     print(" Top left corner is row: 0, col: 0")
     print("-" * 35)
     player_name = input("Please enter your name: \n")
