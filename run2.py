@@ -1,5 +1,13 @@
 from random import randint
 
+greeting = "Welcome to battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
+print(greeting)
+
+#ask for players name
+
+name = input("What is your name Comrade? " )
+print("Hello " + name )
+print("lets set out to sea and destroy the computers ships!!")
 
 class Board(object):
     size_x = 8
@@ -46,7 +54,7 @@ pc_board = Board("PC")
 pc_board.generate()
 pc_board.place_ships_auto()
 pc_board.print(False)
-user_board = Board("User")
+user_board = Board(name.capitalize() + "'s")
 user_board.generate()
 user_board.print()
 
