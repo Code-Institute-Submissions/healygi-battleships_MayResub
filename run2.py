@@ -17,6 +17,8 @@ class Board(object):
     ship_symbol = "0"
     values = []
     label = ""
+    hit = "X"
+   # guesses = []
 
     def __init__(self, label):
         self.values = []
@@ -49,6 +51,56 @@ class Board(object):
             self.values[random_x][random_y] = self.ship_symbol
             ships_placed = ships_placed + 1
 
+    def user_guess(self):
+    # Subtract 1 to adjust for python 0-based indexing
+        shot_x = input('Row: ') 
+        shot_y = input('Col: ')
+       
+        if (shot_x, shot_y) in self.values:
+             self.values[shot_x][shot_y] = self.hit
+             return "HIT!"
+        elif int(shot_x > 8) or int(shot_y > 8):  
+            print("Error: you cannot guess outside the board!")
+        else:
+            return "Miss"
+            
+
+
+"""
+if (x, y) in self.values:
+            self.values[x][y] = "X"
+            return "Hit"
+        else:
+            return "Miss! Try again"
+
+ if row and col in self.ship_symbol:
+                self.values[row][col] = "X"
+                return "HIT!"
+
+            x = int(input('Row: ')) - 1 
+            y = int(input('Col: ')) - 1
+
+        for row in self.values:
+            row = int(input('Row: ')) - 1 
+            col = int(input('Col: ')) - 1
+
+
+        if (x, y) in self.ships:
+            self.board[x][y] = "*"
+            return "Hit"
+        else:
+            return "Miss"
+
+            if row > 8 or col > 8:
+                 print("Error: you cannot guess outside the board!")
+            else: 
+                 self.values[row][col] = self.hit
+                 print("HIT!")
+
+"""
+            
+    
+
 
 pc_board = Board("PC")
 pc_board.generate()
@@ -57,4 +109,6 @@ pc_board.print(False)
 user_board = Board(name.capitalize() + "'s")
 user_board.generate()
 user_board.print()
+pc_board.user_guess()
+
 
