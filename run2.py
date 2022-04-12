@@ -51,22 +51,33 @@ class Board(object):
             self.values[random_x][random_y] = self.ship_symbol
             ships_placed = ships_placed + 1
 
-    def user_guess(self):
+    def user_guess(self, board):
     # Subtract 1 to adjust for python 0-based indexing
-        shot_x = input('Row: ') 
+        x = input("Please enter a column between 1-8? ")
+        y = input("Please enter a row between 1-8? ")
+        if board[x][y] == -1:
+            return "miss"
+        elif board[x][y] == '*': 
+            return "try again"
+        else:
+            return "hit"
+
+        
+            
+
+
+"""
+shot_x = input('Row: ') 
         shot_y = input('Col: ')
        
-        if (shot_x, shot_y) in self.values:
-             self.values[shot_x][shot_y] = self.hit
+        if (shot_x, shot_y) in self.empty_symbol:
+             self.empty_symbol[shot_x][shot_y] = self.hit
              return "HIT!"
         elif int(shot_x > 8) or int(shot_y > 8):  
             print("Error: you cannot guess outside the board!")
         else:
             return "Miss"
-            
 
-
-"""
 if (x, y) in self.values:
             self.values[x][y] = "X"
             return "Hit"
@@ -109,6 +120,7 @@ pc_board.print(False)
 user_board = Board(name.capitalize() + "'s")
 user_board.generate()
 user_board.print()
-pc_board.user_guess()
+#pc_board.user_guess(pc_board.values)
+
 
 
