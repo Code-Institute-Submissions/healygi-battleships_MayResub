@@ -62,7 +62,48 @@ class Board(object):
         else:
             return "hit"
 
-        
+       lass Board(object):
+    size_x = 8
+    size_y = 8
+    ships_number = 5
+    empty_symbol = "*"
+    ship_symbol = "0"
+    values = []
+    label = ""
+lass Board(object):
+    size_x = 8
+    size_y = 8
+    ships_number = 5
+    empty_symbol = "*"
+    ship_symbol = "0"
+    values = []
+    label = ""
+    lass Board(object):
+    size_x = 8
+    size_y = 8
+    ships_number = 5
+    empty_symbol = "*"
+    ship_symbol = "0"
+    values = []
+    label = ""
+
+    lass Board(object):
+    size_x = 8
+    size_y = 8
+    ships_number = 5
+    empty_symbol = "*"
+    ship_symbol = "0"
+    values = []
+    label = ""
+
+    lass Board(object):
+    size_x = 8
+    size_y = 8
+    ships_number = 5
+    empty_symbol = "*"
+    ship_symbol = "0"
+    values = []
+    label = "" 
             
 
 
