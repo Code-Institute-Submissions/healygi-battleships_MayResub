@@ -1,6 +1,6 @@
 from random import randint
 
-greeting = "Welcome to battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
+greeting = "Welcome to Battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
 print(greeting)
 
 #ask for players name
@@ -51,19 +51,30 @@ class Board(object):
             self.values[random_x][random_y] = self.ship_symbol
             ships_placed = ships_placed + 1
 
-    def user_guess(self):
-    # Subtract 1 to adjust for python 0-based indexing
-        x = int(input('Row: ')) - 1 
-        y = int(input('Col: ')) - 1
-        x_column = int(x, self.size_x - 1)
-        y_row = int(y, self.size_y - 1)
-        if self.values[x_column][y_row] <= -1:
-            return "miss, cannot guess outside the board"
-        elif self.values[x_column][y_row] == '0': 
-            return "HIT"
-        else:
-            return "miss"
-            
+    def guess_is_valid(self, guess_x, guess_y):
+        try:
+            x = int(guess_x)
+            y = int(guess_y)
+            if (x <= self.size_x and y <= self.size_y) and (x>0 and y>0):
+                return True
+            else:
+                print('Coordenades outside the board, please enter again')
+                return False
+        except:
+            print('Please enter a integer number')
+            return False
+
+    def user_guess(self, pc_board):
+        # Subtract 1 to adjust for python 0-based indexing
+        input_valid = False
+        while input_valid is False:
+            x = input(f'Row [0 - {self.size_x}]: ')
+            y = input(f'Column [0 - {self.size_y}]: ')
+            input_valid = self.guess_is_valid(x, y)
+        self.attack_board(int(x), int(y), pc_board)
+
+    def attack_board(self, x, y, opponent_board):
+        print(f'Attacking {opponent_board.values[x][y]}')
 
  
             
@@ -112,18 +123,18 @@ if (x, y) in self.values:
                  print("HIT!")
 
 """
-            
-    
 
 
-pc_board = Board("PC")
-pc_board.generate()
-pc_board.place_ships_auto()
-pc_board.print(False)
-user_board = Board(name.capitalize() + "'s")
-user_board.generate()
-user_board.print()
-pc_board.user_guess()
+
+if __name__ == "__main__":
+    pc_board = Board("PC")
+    pc_board.generate()
+    pc_board.place_ships_auto()
+    pc_board.print(False)
+    user_board = Board(name.capitalize() + "'s")
+    user_board.generate()
+    user_board.print()
+    pc_board.user_guess(pc_board)
 
 
 
