@@ -58,14 +58,13 @@ class Board(object):
             if (x <= self.size_x and y <= self.size_y) and (x>0 and y>0):
                 return True
             else:
-                print('Coordenades outside the board, please enter again')
+                print('Coordinates outside the board, please enter again')
                 return False
         except:
             print('Please enter a integer number')
             return False
 
     def user_guess(self, pc_board):
-        # Subtract 1 to adjust for python 0-based indexing
         input_valid = False
         while input_valid is False:
             x = input(f'Row [0 - {self.size_x}]: ')
@@ -76,54 +75,24 @@ class Board(object):
     def attack_board(self, x, y, opponent_board):
         print(f'Attacking {opponent_board.values[x][y]}')
 
- 
-            
+    def pc_guess(self, user_board):
+        input_valid = False
+        while input_valid is False:
+            x = randint(0,8)
+            y = randint(0,8)
+            input_valid = self.guess_is_valid(x, y)
+        print("Computers turn to attack")
+        print("Shots fired....")
+        self.attack_board(int(x), int(y), user_board)
+        print(f'computer guess:[ {int(x)} , {int(y)} ]')
 
-
-"""
-shot_x = input('Row: ') 
-        shot_y = input('Col: ')
-       
-        if (shot_x, shot_y) in self.empty_symbol:
-             self.empty_symbol[shot_x][shot_y] = self.hit
-             return "HIT!"
-        elif int(shot_x > 8) or int(shot_y > 8):  
-            print("Error: you cannot guess outside the board!")
+    def continue_game(self):
+        input(f'Both you and the pc missed- do you want to continue? y/n?' )
+        if 'y':
+            user_guess()
+            pc_guess()
         else:
-            return "Miss"
-
-if (x, y) in self.values:
-            self.values[x][y] = "X"
-            return "Hit"
-        else:
-            return "Miss! Try again"
-
- if row and col in self.ship_symbol:
-                self.values[row][col] = "X"
-                return "HIT!"
-
-            x = int(input('Row: ')) - 1 
-            y = int(input('Col: ')) - 1
-
-        for row in self.values:
-            row = int(input('Row: ')) - 1 
-            col = int(input('Col: ')) - 1
-
-
-        if (x, y) in self.ships:
-            self.board[x][y] = "*"
-            return "Hit"
-        else:
-            return "Miss"
-
-            if row > 8 or col > 8:
-                 print("Error: you cannot guess outside the board!")
-            else: 
-                 self.values[row][col] = self.hit
-                 print("HIT!")
-
-"""
-
+            print('GAME OVER!')
 
 
 if __name__ == "__main__":
@@ -133,8 +102,12 @@ if __name__ == "__main__":
     pc_board.print(False)
     user_board = Board(name.capitalize() + "'s")
     user_board.generate()
-    user_board.print()
+    user_board.place_ships_auto()
+    user_board.print(False)
     pc_board.user_guess(pc_board)
+    user_board.pc_guess(user_board)
+    user_board.continue_game()
+    pc_board.continue_game()
 
 
 

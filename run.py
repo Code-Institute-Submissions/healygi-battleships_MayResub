@@ -121,3 +121,46 @@ def start_game():
 #start_game()
    
 
+"""
+shot_x = input('Row: ') 
+        shot_y = input('Col: ')
+       
+        if (shot_x, shot_y) in self.empty_symbol:
+             self.empty_symbol[shot_x][shot_y] = self.hit
+             return "HIT!"
+        elif int(shot_x > 8) or int(shot_y > 8):  
+            print("Error: you cannot guess outside the board!")
+        else:
+            return "Miss"
+
+if (x, y) in self.values:
+            self.values[x][y] = "X"
+            return "Hit"
+        else:
+            return "Miss! Try again"
+
+ if row and col in self.ship_symbol:
+                self.values[row][col] = "X"
+                return "HIT!"
+
+            x = int(input('Row: ')) - 1 
+            y = int(input('Col: ')) - 1
+
+        for row in self.values:
+            row = int(input('Row: ')) - 1 
+            col = int(input('Col: ')) - 1
+
+
+        if (x, y) in self.ships:
+            self.board[x][y] = "*"
+            return "Hit"
+        else:
+            return "Miss"
+
+            if row > 8 or col > 8:
+                 print("Error: you cannot guess outside the board!")
+            else: 
+                 self.values[row][col] = self.hit
+                 print("HIT!")
+
+"""
