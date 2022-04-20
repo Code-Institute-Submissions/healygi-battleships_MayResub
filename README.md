@@ -4,7 +4,15 @@
 
 Battleships is a Python terminal game, deployed on Heroku.
 
-Users can try to beat the computer by hitting all the pcs battleships before the computer finds theirs. Each battleship 
+Users can try to beat the computer by hitting all the pcs battleships before the computer finds theirs. Each battleship occupies one square on the board.
+
+## How to play
+
+Battleships is a strategy type guessing game for two players. Within this game, it is played on a grid where the user has a board and the pc has a board. Locations of the ships of the pc board are concealed from the user. All ships are positioned randomly. 
+
+The user can see where its ships are placed indicated by an '0' but cannot see where the computers ships are. Guesses are marked with 'G' and hits are indicated by 'X'.
+
+The pc and user take turns to try there shot at sinking each others ships. The winner is the player who successfully sinks all of their opponet's battleships first. 
 
 ## Reminders
 
