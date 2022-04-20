@@ -14,6 +14,43 @@ The user can see where its ships are placed indicated by an '0' but cannot see w
 
 The pc and user take turns to try there shot at sinking each others ships. The winner is the player who successfully sinks all of their opponet's battleships first. 
 
+## Features
+
+Random board generation:
+- Ships are randomly placed on both the player and computer boards
+- The player cannot see where the computer's ships are
+- user vs the pc
+- Accepts user input
+- Maintains scores
+
+Input validation and error-checking:
+- You cannot enter coordinates outsdie the size of the grid
+- You must enter integers
+- You cannot enter the same guess twice
+- Data maintained in class instances
+
+## Future Features
+
+Allow user to select the board size and number of ships
+Allow user to position the ships themselves
+Have ships larger than 1x1
+
+## Data Model
+
+I decided to use Board class as my model. The game creates two instances of the Board class to hold the user's and the pc's board. 
+
+The Board class stores the board size, the number of ships, the position of the ships, the guesses against that board, and details such as the board type (user's board or pc) and the user's name. 
+
+
+## Testing
+
+## Bugs
+
+## Deployment
+
+## Credits
+
+
 ## Reminders
 
 * Your code must be placed in the `run.py` file
