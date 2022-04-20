@@ -84,11 +84,17 @@ class Board(object):
         print(f'Attacking {opponent_board.values[x][y]}')
         print(f'opponent board position is: ${opponent_board.values[x][y]}')
         print(f'ship symbol is: ${self.ship_symbol}')
-        if opponent_board.values[x][y] ==self.ship_symbol:
-            self.values[x][y] = self.hit
+        if opponent_board.values[x][y] == self.ship_symbol:
             print("HIT!")
+            opponent_board.values[x][y] == "X"
+            #self.update_user_board(x, y, opponent_board)
         else:
             print("MISS!")
+
+    def update_user_board(self, x, y, opponent_board):
+        shot = opponent_board.values[x][y]
+        if shot == self.ship_symbol:
+            self.ship_symbol[x][y] = self.hit[x][y]
 
     def pc_guess(self, user_board):
         input_valid = False
