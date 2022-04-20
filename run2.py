@@ -1,7 +1,7 @@
 from random import randint
 
 print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-greeting = "Welcome to Battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
+greeting = "Welcome to Battleships- /n play against the computer and be the first to sink all 5 of your opponent's ships."
 print(greeting)
 #ask for players name
 name = input("What is your name Comrade? " )
@@ -12,7 +12,6 @@ print("Instructions: Board size- 8. Number of ships- 5. Top left corner is row: 
 print("LETS PLAY!")
 print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
-
 class Board(object):
     size_x = 8
     size_y = 8
@@ -22,7 +21,7 @@ class Board(object):
     values = []
     label = ""
     hit = "X"
-   # guesses = []
+
 
     def __init__(self, label):
         self.values = []
@@ -113,7 +112,3 @@ if __name__ == "__main__":
     user_board.print(False)
     pc_board.user_guess(pc_board)
     user_board.pc_guess(user_board)
-
-
-
-
