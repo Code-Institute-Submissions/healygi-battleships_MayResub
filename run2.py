@@ -17,7 +17,7 @@ class Board(object):
     size_x = 8
     size_y = 8
     ships_number = 5
-    empty_symbol = "*"
+    empty_symbol = "0"
     ship_symbol = "0"
     values = []
     label = ""
@@ -76,28 +76,31 @@ class Board(object):
             input_valid = self.guess_is_valid(x, y)
         self.attack_board(int(x), int(y), pc_board)
 
+        """
+        if statment to check if guess is a hit or not. Attack
+        method for computer and user to attack board
+        """
+
     def attack_board(self, x, y, opponent_board):
         print(f'Attacking {opponent_board.values[x][y]}')
+        print(f'opponent board position is: ${opponent_board.values[x][y]}')
+        print(f'ship symbol is: ${self.ship_symbol}')
+        if opponent_board.values[x][y] ==self.ship_symbol:
+            self.values[x][y] = self.hit
+            print("HIT!")
+        else:
+            print("MISS!")
 
     def pc_guess(self, user_board):
         input_valid = False
         while input_valid is False:
-            x = randint(0,8)
-            y = randint(0,8)
+            x = randint(0, 8 -1)
+            y = randint(0, 8 -1)
             input_valid = self.guess_is_valid(x, y)
         print("Computers turn to attack")
         print("Shots fired....")
         self.attack_board(int(x), int(y), user_board)
-        print(f'computer guess:[ {int(x)} , {int(y)} ]')
-
-    def continue_game(self):
-        input(f'Both you and the pc missed- do you want to continue? y/n?' )
-        if 'y':
-            user_guess()
-            pc_guess()
-        else:
-            print('GAME OVER!')
-
+        print(f'computer guess:[{int(x)} , {int(y)}]')
 
 if __name__ == "__main__":
     pc_board = Board("PC")
@@ -110,8 +113,7 @@ if __name__ == "__main__":
     user_board.print(False)
     pc_board.user_guess(pc_board)
     user_board.pc_guess(user_board)
-    user_board.continue_game()
-    pc_board.continue_game()
+
 
 
 

@@ -1,8 +1,10 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome healygi,
+## Battleships
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+Battleships is a Python terminal game, deployed on Heroku.
+
+Users can try to beat the computer by hitting all the pcs battleships before the computer finds theirs. Each battleship 
 
 ## Reminders
 
