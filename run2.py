@@ -1,13 +1,17 @@
 from random import randint
 
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 greeting = "Welcome to Battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
 print(greeting)
-
 #ask for players name
-
 name = input("What is your name Comrade? " )
 print("Hello " + name )
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 print("lets set out to sea and destroy the computers ships!!")
+print("Instructions: Board size- 8. Number of ships- 5. Top left corner is row: 0, column: 0.")
+print("LETS PLAY!")
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
 
 class Board(object):
     size_x = 8
