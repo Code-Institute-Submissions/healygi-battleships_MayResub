@@ -1,166 +1,120 @@
 from random import randint
 
-scores = {"computer": 0, "player": 0}
-#Create greeting message for player
-
-greeting = "Welcome to battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+greeting = "Welcome to Battleships- /n play against the computer and be the first to sink all 5 of your opponent's ships."
 print(greeting)
-
 #ask for players name
-
 name = input("What is your name Comrade? " )
 print("Hello " + name )
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 print("lets set out to sea and destroy the computers ships!!")
+print("Instructions: Board size- 8. Number of ships- 5. Top left corner is row: 0, column: 0.")
+print("LETS PLAY!")
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
-# Instructions on how to play
-"""
-#Create variable to make board and store ships
-board = [[" "] * 4 for x in range(8)]
-#Create variable to display misses and hits
-hidden_board =  [[" "] * 4 for i in range(8)]
-print(board)
-"""
-
-class Board:
-
-    def __init__(self, size, num_ships, name, type):
-        #Initialize board
-        self.size = size
-        self.num_ships = num_ships
-        self.board = [["." for x in range(size)] for y in range(size)]
-        self.name = name 
-        self.type = type 
-        self.guesses = []
-        self.ships = []
-
-    def print(self):
-        for row in self.board:
-            print(" ".join(row))
-
-    def guess(self, x, y):
-        self.guesses.append((x, y))
-        self.board[x][y] = "X"
-
-        if (x, y) in self.ships:
-            self.board[x][y] = "*"
-            return "Hit"
-        else:
-            return "Miss"
-
-    def add_ship(self, x, y, type="computer"):
-        if len(self.ships) >= self.num_ships:
-            print("Error: you cannot add any more ships!")
-        else:
-            self.ships.append((x, y))
-            if self.type == "player":
-                self.board[x][y] = "&"
-
-    def random_point(size):
-        """
-        Helper function to return a random integer between 0 and size
-        """
-        return randint(0, size - 1)
-"""
-def valid_coordinates(x, y, board):
-    #valid dates coorendates input to make sure if they have 
-    already been guessed or not outside the coordinates of our board
-
-"""
-def populate_board(board):
-         self.board = [["." for x in range(size)] for y in range(size)]
-         populate_board()
+class Board(object):
+    size_x = 8
+    size_y = 8
+    ships_number = 5
+    empty_symbol = "0"
+    ship_symbol = "0"
+    values = []
+    label = ""
+    hit = "X"
 
 
+    def __init__(self, label):
+        self.values = []
+        self.label = label
 
-"""
-def make_guess(board):
-    #processes the guesses- if it is a computer guess does exactly
-    the same thing it did when it populated the board 
-    choose for random row and random column. If it is a player
-    guess input requirded. 
-
-def play_game(computer_board, player_board):
-    #deploys game board and starts game
-
-"""
-
-def start_game():
-
-    """
-    Starts a new game. Sets the board size and number of ships
-    resets the scores and initialises the boards.
-    """
-
-    size = 5
-    num_ships = 4
-    scores["computer"] = 0
-    scores["player"] = 0
-    print("-" * 35)
-    print(f"Board Size: {size}. Number of ships: {num_ships}")
-    print(" Top left corner is row: 0, col: 0")
-    print("-" * 35)
-    player_name = input("Please enter your name: \n")
-    print("-" * 35)
-
-    #Create two class instances- intialising it with number of ships, player name and board type
-
-    computer_board = Board(size, num_ships, "Computer", type="computer")
-    player_board = Board(size, num_ships, player_name, type="player")
-
-    """
-    for loop creates random placement of ships on player board 
-    and computer board. 
-    """
-
-    for _ in range(num_ships):
-        populate_board(player_board)
-        populate_board(computer_board)
+    def generate(self):
+        for row in range(0, self.size_y):
+            columns = []
+            for column in range(0, self.size_x):
+                columns.append(self.empty_symbol)
+            self.values.append(columns)
     
-  #  play_game(computer_board, player_board)
-
-#start_game()
-   
-
-"""
-shot_x = input('Row: ') 
-        shot_y = input('Col: ')
-       
-        if (shot_x, shot_y) in self.empty_symbol:
-             self.empty_symbol[shot_x][shot_y] = self.hit
-             return "HIT!"
-        elif int(shot_x > 8) or int(shot_y > 8):  
-            print("Error: you cannot guess outside the board!")
-        else:
-            return "Miss"
-
-if (x, y) in self.values:
-            self.values[x][y] = "X"
-            return "Hit"
-        else:
-            return "Miss! Try again"
-
- if row and col in self.ship_symbol:
-                self.values[row][col] = "X"
-                return "HIT!"
-
-            x = int(input('Row: ')) - 1 
-            y = int(input('Col: ')) - 1
-
+    def print(self, hidden=True):
+        print("    " + self.label + " Board")
+        print("=====================")
         for row in self.values:
-            row = int(input('Row: ')) - 1 
-            col = int(input('Col: ')) - 1
+            formated_row = " ".join(row)
+            formated_row = "== " + formated_row + " =="
+            if hidden:
+                formated_row = formated_row.replace(self.ship_symbol, self.empty_symbol) 
+            print(formated_row)
+        print("=====================")
 
+    def place_ships_auto(self):
+        ships_placed = 0
+        while ships_placed < self.ships_number:
+            random_x = randint(0, self.size_x - 1)
+            random_y = randint(0, self.size_y - 1)
+            # TODO validate space is empty
+            self.values[random_x][random_y] = self.ship_symbol
+            ships_placed = ships_placed + 1
 
-        if (x, y) in self.ships:
-            self.board[x][y] = "*"
-            return "Hit"
+    def guess_is_valid(self, guess_x, guess_y):
+        try:
+            x = int(guess_x)
+            y = int(guess_y)
+            if (x <= self.size_x and y <= self.size_y) and (x>0 and y>0):
+                return True
+            else:
+                print('Coordinates outside the board, please enter again')
+                return False
+        except:
+            print('Please enter a integer number')
+            return False
+
+    def user_guess(self, pc_board):
+        input_valid = False
+        while input_valid is False:
+            x = input(f'Row [0 - {self.size_x}]: ')
+            y = input(f'Column [0 - {self.size_y}]: ')
+            input_valid = self.guess_is_valid(x, y)
+        self.attack_board(int(x), int(y), pc_board)
+
+        """
+        if statment to check if guess is a hit or not. Attack
+        method for computer and user to attack board
+        """
+
+    def attack_board(self, x, y, opponent_board):
+        print(f'Attacking {opponent_board.values[x][y]}')
+        print(f'opponent board position is: ${opponent_board.values[x][y]}')
+        print(f'ship symbol is: ${self.ship_symbol}')
+        if opponent_board.values[x][y] == self.ship_symbol:
+            print("HIT!")
+            opponent_board.values[x][y] == "X"
+            #self.update_user_board(x, y, opponent_board)
         else:
-            return "Miss"
+            print("MISS!")
 
-            if row > 8 or col > 8:
-                 print("Error: you cannot guess outside the board!")
-            else: 
-                 self.values[row][col] = self.hit
-                 print("HIT!")
+    def update_user_board(self, x, y, opponent_board):
+        shot = opponent_board.values[x][y]
+        if shot == self.ship_symbol:
+            self.ship_symbol[x][y] = self.hit[x][y]
 
-"""
+    def pc_guess(self, user_board):
+        input_valid = False
+        while input_valid is False:
+            x = randint(0, 8 -1)
+            y = randint(0, 8 -1)
+            input_valid = self.guess_is_valid(x, y)
+        print("Computers turn to attack")
+        print("Shots fired....")
+        self.attack_board(int(x), int(y), user_board)
+        print(f'computer guess:[{int(x)} , {int(y)}]')
+
+if __name__ == "__main__":
+    pc_board = Board("PC")
+    pc_board.generate()
+    pc_board.place_ships_auto()
+    pc_board.print(False)
+    user_board = Board(name.capitalize() + "'s")
+    user_board.generate()
+    user_board.place_ships_auto()
+    user_board.print(False)
+    pc_board.user_guess(pc_board)
+    user_board.pc_guess(user_board)
