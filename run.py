@@ -119,9 +119,9 @@ def run_game(pc_board, user_board):
     pc_board.user_guess(pc_board)
     user_board.pc_guess(user_board)
     turns = 10
-    while turns > 10:
+    while turns > 0:
         user_board.user_guess(pc_board)
-        #pc_board.pc_guess(user_board)
+        pc_board.pc_guess(user_board)
         turns -= 1
 
         #checks if duplicate guess
