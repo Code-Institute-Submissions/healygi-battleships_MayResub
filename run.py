@@ -1,7 +1,7 @@
 from random import randint
 
 print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-greeting = "Welcome to Battleships- /n play against the computer and be the first to sink all 5 of your opponent's ships."
+greeting = "Welcome to Battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
 print(greeting)
 #ask for players name
 name = input("What is your name Comrade? " )
@@ -106,6 +106,14 @@ class Board(object):
         print("Shots fired....")
         self.attack_board(int(x), int(y), user_board)
         print(f'computer guess:[{int(x)} , {int(y)}]')
+    
+    def count_hit_ships(self):
+        hit_ships = 0
+        for row in self.board:
+            for column in row:
+                if column == "X"
+                hit_ships += 1
+        return hit_ships
 
 if __name__ == "__main__":
     pc_board = Board("PC")
