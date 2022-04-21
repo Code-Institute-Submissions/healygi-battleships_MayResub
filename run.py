@@ -16,7 +16,7 @@ class Board(object):
     size_x = 8
     size_y = 8
     ships_number = 5
-    empty_symbol = "0"
+    empty_symbol = "*"
     ship_symbol = "0"
     values = []
     label = ""
@@ -111,9 +111,38 @@ class Board(object):
         hit_ships = 0
         for row in self.board:
             for column in row:
-                if column == "X"
-                hit_ships += 1
+                if column == "X":
+                  hit_ships += 1
         return hit_ships
+
+    def run_game(self):
+       turns = 10
+       while turns > 10:
+         user_x_row, user_y_col = Board.user_guess(object)
+        #checks if duplicate guess
+            while user_guess.pc_board[user_x_row][user_y_col] == "-" or user_guess.pc_board[user_x_row][user_y_col] == "X":
+              print("You guessed that one already")
+              user_x_row, user_y_col = Board.user_guess(object)
+             #check for hit or miss
+            if user_guess.pc_board[user_x_row][user_y_col] == "X":
+              print("You sunk 1 of my battleships!")
+              user_guess.pc_board[user_x_row][user_y_col] = "X"
+            else:
+             print("MISS!")
+             user_guess.pc_board[user_x_row][user_y_col] = "-"
+             #check if win or lose
+            if Board.count_hit_ships(pc_board) == 5:
+             print("PC hit all 5 of your battleships!")
+            elif Board.count_hit_ships(user_board) == 5:
+             print("You hit all 5 battleships!")
+             break
+            else:
+              turns -= 1
+              print(f"You have {turns} turns remaining")
+              if turns == 0:
+                print("Sorry you ran out of turns")
+                Board.user_board(user_guess)
+                break     
 
 if __name__ == "__main__":
     pc_board = Board("PC")
@@ -126,3 +155,4 @@ if __name__ == "__main__":
     user_board.print(False)
     pc_board.user_guess(pc_board)
     user_board.pc_guess(user_board)
+    run_game()
