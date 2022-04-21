@@ -22,7 +22,6 @@ class Board(object):
     label = ""
     hit = "X"
 
-
     def __init__(self, label):
         self.values = []
         self.label = label
@@ -79,7 +78,7 @@ class Board(object):
         if statment to check if guess is a hit or not. Attack
         method for computer and user to attack board
         """
-
+    
     def attack_board(self, x, y, opponent_board):
         print(f'Attacking {opponent_board.values[x][y]}')
         print(f'opponent board position is: ${opponent_board.values[x][y]}')
@@ -90,11 +89,12 @@ class Board(object):
             #self.update_user_board(x, y, opponent_board)
         else:
             print("MISS!")
-
+        """
     def update_user_board(self, x, y, opponent_board):
         shot = opponent_board.values[x][y]
         if shot == self.ship_symbol:
             self.ship_symbol[x][y] = self.hit[x][y]
+        """
 
     def pc_guess(self, user_board):
         input_valid = False
@@ -112,37 +112,42 @@ class Board(object):
         for row in self.board:
             for column in row:
                 if column == "X":
-                  hit_ships += 1
+                 hit_ships += 1
         return hit_ships
 
-    def run_game(self):
-       turns = 10
-       while turns > 10:
-         user_x_row, user_y_col = Board.user_guess(object)
+def run_game(pc_board, user_board):
+    pc_board.user_guess(pc_board)
+    user_board.pc_guess(user_board)
+    turns = 10
+    while turns > 10:
+        user_board.user_guess(pc_board)
+        #pc_board.pc_guess(user_board)
+        turns -= 1
+
         #checks if duplicate guess
-            while user_guess.pc_board[user_x_row][user_y_col] == "-" or user_guess.pc_board[user_x_row][user_y_col] == "X":
-              print("You guessed that one already")
-              user_x_row, user_y_col = Board.user_guess(object)
-             #check for hit or miss
-            if user_guess.pc_board[user_x_row][user_y_col] == "X":
-              print("You sunk 1 of my battleships!")
-              user_guess.pc_board[user_x_row][user_y_col] = "X"
-            else:
-             print("MISS!")
-             user_guess.pc_board[user_x_row][user_y_col] = "-"
-             #check if win or lose
-            if Board.count_hit_ships(pc_board) == 5:
-             print("PC hit all 5 of your battleships!")
-            elif Board.count_hit_ships(user_board) == 5:
-             print("You hit all 5 battleships!")
-             break
-            else:
-              turns -= 1
-              print(f"You have {turns} turns remaining")
-              if turns == 0:
-                print("Sorry you ran out of turns")
-                Board.user_board(user_guess)
-                break     
+        # while user_guess.pc_board[int(x)][int(y)] == "-" or user_guess.pc_board[int(x)][int(y)]== "X":
+        #     print("You guessed that one already")
+        #     x, y = Board.user_guess(object)
+        #     #check for hit or miss
+        # if user_guess.attack_board.values[int(x)][int(y)] == "X":
+        #     print("You sunk 1 of my battleships!")
+        #     user_guess.pc_board[int(x)][int(y)]= "X"
+        # else:
+        #     print("MISS!")
+        #     user_guess.pc_board[int(x)][int(y)] = "-"
+        #     #check if win or lose
+        # if Board.count_hit_ships(pc_board) == 5:
+        #     print("PC hit all 5 of your battleships!")
+        # elif Board.count_hit_ships(user_board) == 5:
+        #     print("You hit all 5 battleships!")
+        #     break
+        # else:
+        #     turns -= 1
+        #     print(f"You have {turns} turns remaining")
+        #     if turns == 0:
+        #      print("Sorry you ran out of turns")
+        #      user_board(user_guess)
+        #      break   
 
 if __name__ == "__main__":
     pc_board = Board("PC")
@@ -153,6 +158,4 @@ if __name__ == "__main__":
     user_board.generate()
     user_board.place_ships_auto()
     user_board.print(False)
-    pc_board.user_guess(pc_board)
-    user_board.pc_guess(user_board)
-    run_game()
+    run_game(pc_board, user_board)
