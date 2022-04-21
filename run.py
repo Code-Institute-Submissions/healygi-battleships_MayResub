@@ -21,6 +21,7 @@ class Board(object):
     values = []
     label = ""
     hit = "X"
+    miss = "-"
 
     def __init__(self, label):
         self.values = []
@@ -57,7 +58,7 @@ class Board(object):
         try:
             x = int(guess_x)
             y = int(guess_y)
-            if (x <= self.size_x and y <= self.size_y) and (x>0 and y>0):
+            if (x <= self.size_x and y <= self.size_y) and (x > 0 and y > 0):
                 return True
             else:
                 print('Coordinates outside the board, please enter again')
@@ -85,7 +86,7 @@ class Board(object):
         print(f'ship symbol is: ${self.ship_symbol}')
         if opponent_board.values[x][y] == self.ship_symbol:
             print("HIT!")
-            opponent_board.values[x][y] == "X"
+            opponent_board.values[x][y] == self.hit
             #self.update_user_board(x, y, opponent_board)
         else:
             print("MISS!")
@@ -93,8 +94,9 @@ class Board(object):
     def update_user_board(self, x, y, opponent_board):
         shot = opponent_board.values[x][y]
         if shot == self.ship_symbol:
-            self.ship_symbol[x][y] = self.hit[x][y]
-        """
+            self.values.append[x][y] = self.hit[x][y]
+        """    
+    
 
     def pc_guess(self, user_board):
         input_valid = False
@@ -123,6 +125,8 @@ def run_game(pc_board, user_board):
         user_board.user_guess(pc_board)
         pc_board.pc_guess(user_board)
         turns -= 1
+        #if user_board.user_guess(pc_board) == "-" or user_board.user_guess(pc_board) = "X":
+         #    print("You guessed that one already!")
 
         #checks if duplicate guess
         # while user_guess.pc_board[int(x)][int(y)] == "-" or user_guess.pc_board[int(x)][int(y)]== "X":
