@@ -80,21 +80,23 @@ class Board(object):
         method for computer and user to attack board
         """
     
-    def attack_board(self, x, y, opponent_board):
-        #x = self.size_x
-        #y = self.size_y
-        print(f'Attacking {opponent_board.values[x][y]}')
-        print(f'opponent board position is: ${opponent_board.values[x][y]}')
-        print(f'ship symbol is: ${self.ship_symbol}')
-        print(f'${opponent_board.label} shoots!')
+    def attack_board(self, x, y, opponent):
+        print(f'Attacking {self.values[x][y]}')
+        print(f'opponent board position is: {self.values[x][y]}')
+        print(f'ship symbol is: {self.ship_symbol}')
+        print(f'${opponent.label} shoots!')
         if self.values[x][y] == self.ship_symbol:
             print("HIT!")
+
             self.values[x][y] = self.hit
             self.print(False)
+
         elif self.values[x][y] == self.empty_symbol:
             print("MISS!")
+
             self.values[x][y] = self.miss
             self.print(False)
+
         else:
             print("You guessed that one already")
              
@@ -145,10 +147,8 @@ if __name__ == "__main__":
     pc_board.generate()
     pc_board.place_ships_auto()
     pc_board.print(False)
-    #pc_board.generate(user_guess)
     user_board = Board(name.capitalize() + "'s")
     user_board.generate()
     user_board.place_ships_auto()
     user_board.print(False)
-    #user_board.generate(pc_guess)
     run_game(pc_board, user_board)
