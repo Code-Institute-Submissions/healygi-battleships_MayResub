@@ -50,7 +50,6 @@ class Board(object):
         while ships_placed < self.ships_number:
             random_x = randint(0, self.size_x - 1)
             random_y = randint(0, self.size_y - 1)
-            # TODO validate space is empty
             self.values[random_x][random_y] = self.ship_symbol
             ships_placed = ships_placed + 1
 
@@ -84,7 +83,7 @@ class Board(object):
         print(f'Attacking {self.values[x][y]}')
         print(f'opponent board position is: {self.values[x][y]}')
         print(f'ship symbol is: {self.ship_symbol}')
-        print(f'${opponent.label} shoots!')
+        print(f'{opponent.label} shoots!')
         if self.values[x][y] == self.ship_symbol:
             print("HIT!")
 
@@ -98,7 +97,9 @@ class Board(object):
             self.print(False)
 
         else:
-            print("You guessed that one already")
+            print("You guessed that one already!")
+            #self.user_guess()
+            #self.pc_guess()
              
     def pc_guess(self):
         input_valid = False
@@ -111,22 +112,28 @@ class Board(object):
         self.attack_board(int(x), int(y), user_board)
         print(f'computer guess:[{int(x)} , {int(y)}]')
     
-   # def count_hit_ships(self):
-    #    hit_ships = 0
-     #   for row in self.board:
-      #      for column in row:
-       #         if column == "X":
-        #         hit_ships += 1
-        #eturn hit_ships
+    #def count_hit_ships(self, opponent):
+     #   ships_destroy = 0
+      #  while ships_destroy < self.ships_number:
+       #     hit_x = self.values[x]
+        #    hit_y = self.values[y]
+         #   self.values[hit_x][hit_y] = self.hit
+          #  ships_destroy = ships_destroy + 1
+           # if self.values[hit_x][hit_y] == self.hit and ships_destroy == self.ships_number:
+            #    print(f"ALL OF {opponent.label} BATTLESHIPS ARE DESTROYED!")
 
 def run_game(pc_board, user_board):
     pc_board.user_guess()
     user_board.pc_guess()
+    #pc_board.count_hit_ships()
+    #user_board.count_hit_ships()
     turns = 10
     while turns > 0:
         user_board.user_guess()
         pc_board.pc_guess()
         turns -= 1
+       # else:
+        #     print("GAME OVER!")
 
         #     #check if win or lose
         # if Board.count_hit_ships(pc_board) == 5:
