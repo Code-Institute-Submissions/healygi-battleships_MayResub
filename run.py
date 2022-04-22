@@ -67,7 +67,7 @@ class Board(object):
             print('Please enter a integer number')
             return False
 
-    def user_guess(self, pc_board):
+    def user_guess(self):
         input_valid = False
         while input_valid is False:
             x = input(f'Row [0 - {self.size_x}]: ')
@@ -81,24 +81,24 @@ class Board(object):
         """
     
     def attack_board(self, x, y, opponent_board):
+        #x = self.size_x
+        #y = self.size_y
         print(f'Attacking {opponent_board.values[x][y]}')
         print(f'opponent board position is: ${opponent_board.values[x][y]}')
         print(f'ship symbol is: ${self.ship_symbol}')
-        if opponent_board.values[x][y] == self.ship_symbol:
+        print(f'${opponent_board.label} shoots!')
+        if self.values[x][y] == self.ship_symbol:
             print("HIT!")
-            opponent_board.values[x][y] == self.hit
-            #self.update_user_board(x, y, opponent_board)
-        else:
+            self.values[x][y] = self.hit
+            self.print(False)
+        elif self.values[x][y] == self.empty_symbol:
             print("MISS!")
-        """
-    def update_user_board(self, x, y, opponent_board):
-        shot = opponent_board.values[x][y]
-        if shot == self.ship_symbol:
-            self.values.append[x][y] = self.hit[x][y]
-        """    
-    
-
-    def pc_guess(self, user_board):
+            self.values[x][y] = self.miss
+            self.print(False)
+        else:
+            print("You guessed that one already")
+             
+    def pc_guess(self):
         input_valid = False
         while input_valid is False:
             x = randint(0, 8 -1)
@@ -109,36 +109,23 @@ class Board(object):
         self.attack_board(int(x), int(y), user_board)
         print(f'computer guess:[{int(x)} , {int(y)}]')
     
-    def count_hit_ships(self):
-        hit_ships = 0
-        for row in self.board:
-            for column in row:
-                if column == "X":
-                 hit_ships += 1
-        return hit_ships
+   # def count_hit_ships(self):
+    #    hit_ships = 0
+     #   for row in self.board:
+      #      for column in row:
+       #         if column == "X":
+        #         hit_ships += 1
+        #eturn hit_ships
 
 def run_game(pc_board, user_board):
-    pc_board.user_guess(pc_board)
-    user_board.pc_guess(user_board)
+    pc_board.user_guess()
+    user_board.pc_guess()
     turns = 10
     while turns > 0:
-        user_board.user_guess(pc_board)
-        pc_board.pc_guess(user_board)
+        user_board.user_guess()
+        pc_board.pc_guess()
         turns -= 1
-        #if user_board.user_guess(pc_board) == "-" or user_board.user_guess(pc_board) = "X":
-         #    print("You guessed that one already!")
 
-        #checks if duplicate guess
-        # while user_guess.pc_board[int(x)][int(y)] == "-" or user_guess.pc_board[int(x)][int(y)]== "X":
-        #     print("You guessed that one already")
-        #     x, y = Board.user_guess(object)
-        #     #check for hit or miss
-        # if user_guess.attack_board.values[int(x)][int(y)] == "X":
-        #     print("You sunk 1 of my battleships!")
-        #     user_guess.pc_board[int(x)][int(y)]= "X"
-        # else:
-        #     print("MISS!")
-        #     user_guess.pc_board[int(x)][int(y)] = "-"
         #     #check if win or lose
         # if Board.count_hit_ships(pc_board) == 5:
         #     print("PC hit all 5 of your battleships!")
@@ -158,8 +145,10 @@ if __name__ == "__main__":
     pc_board.generate()
     pc_board.place_ships_auto()
     pc_board.print(False)
+    #pc_board.generate(user_guess)
     user_board = Board(name.capitalize() + "'s")
     user_board.generate()
     user_board.place_ships_auto()
     user_board.print(False)
+    #user_board.generate(pc_guess)
     run_game(pc_board, user_board)
