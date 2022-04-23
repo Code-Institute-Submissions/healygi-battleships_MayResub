@@ -1,14 +1,18 @@
 from random import randint
 
 print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-greeting = "Welcome to Battleships- play against the computer and be the first to sink all 5 of your opponent's ships."
-print(greeting)
+greeting = "Welcome to Battleships"
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+print(greeting.upper())
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 #ask for players name
 name = input("What is your name Comrade? " )
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 print("Hello " + name )
 print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-print("lets set out to sea and destroy the computers ships!!")
-print("Instructions: Board size- 8. Number of ships- 5. Top left corner is row: 0, column: 0.")
+print("lets set out to sea and destroy the pc ships!!")
+print("Instructions: Board size- 8. Number of ships- 5. Top left corner is row: 0, column: 0. Play against the computer and be the first to sink all 5 of your opponent's ships.")
+print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 print("LETS PLAY!")
 print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
@@ -98,8 +102,9 @@ class Board(object):
 
         else:
             print("You guessed that one already!")
-            #self.user_guess()
-            #self.pc_guess()
+            print("Please guess again")
+            self.user_guess()
+            self.pc_guess()
              
     def pc_guess(self):
         input_valid = False
