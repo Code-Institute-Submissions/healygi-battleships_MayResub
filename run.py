@@ -148,7 +148,7 @@ def run_game(pc_board, user_board):
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
         print("GAME OVER!")
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    again = input("Do you want to play again, type yes or no?")
+    again = input("Do you want to play again, type yes or press any key to quit?")
     print(again)
     if again == "yes":
         pc_board = Board("PC")
