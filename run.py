@@ -73,6 +73,7 @@ class Board(object):
     def user_guess(self):
         input_valid = False
         while input_valid is False:
+            print("Guess a Row and Column between [0-8]")
             x = input(f'Row [0 - {self.size_x}]: ')
             y = input(f'Column [0 - {self.size_y}]: ')
             input_valid = self.guess_is_valid(x, y)
