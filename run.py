@@ -87,7 +87,7 @@ class Board(object):
         print(f'Attacking {self.values[x][y]}')
         print(f'opponent board position is: {self.values[x][y]}')
         print(f'ship symbol is: {self.ship_symbol}')
-        print(f'{opponent.label} shoots!')
+        print(f'{opponent.label} battleships prepare for incoming fire....')
         if self.values[x][y] == self.ship_symbol:
             print("HIT!")
 
@@ -137,8 +137,39 @@ def run_game(pc_board, user_board):
         user_board.user_guess()
         pc_board.pc_guess()
         turns -= 1
-       # else:
-        #     print("GAME OVER!")
+        if turns <= 5 :
+         print(f"You have {turns} turns remaining")
+         continue
+        turns -= 1
+    else: 
+        turns == 0
+        print("Sorry you ran out of turns")
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print("GAME OVER!")
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    again = input("Do you want to play again, type yes or no?")
+    print(again)
+    if again == "yes":
+        pc_board = Board("PC")
+        pc_board.generate()
+        pc_board.place_ships_auto()
+        pc_board.print(False)
+        user_board = Board(name.capitalize() + "'s")
+        user_board.generate()
+        user_board.place_ships_auto()
+        user_board.print(False)
+        run_game(pc_board, user_board)
+    else:
+        print("Thank you for playing battleships! Come back soon!")
+
+
+  #  print( "                      _
+   #         "                    |_]
+    #        " - - - - - - - -    |       - - - - - - - "
+     #       "    - - - - - - - - - - - -- - - - - - "
+      #          "   - - -- - - - -- - - -- - - - - -     ")
+          
+        #     
 
         #     #check if win or lose
         # if Board.count_hit_ships(pc_board) == 5:
