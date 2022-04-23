@@ -1,20 +1,21 @@
 from random import randint
 
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-greeting = "Welcome to Battleships"
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-print(greeting.upper())
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-#ask for players name
-name = input("What is your name Comrade? " )
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-print("Hello " + name )
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-print("lets set out to sea and destroy the pc ships!!")
-print("Instructions: Board size- 8. Number of ships- 5. Top left corner is row: 0, column: 0. Play against the computer and be the first to sink all 5 of your opponent's ships.")
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-print("LETS PLAY!")
-print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+def start_game():
+    greeting = "Welcome to Battleships"
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print(greeting.upper())
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    #ask for players name
+    name = input("What is your name Comrade?")
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print("Hello " + name)
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print("lets set out to sea and destroy the pc ships!!")
+    print("Instructions: Board size 7x7. Number of ships- 5. Top left corner is (row:0, column:0). Play against the computer and be the first to sink all 5 of your opponent's ships. You have 15 turns to win")
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print("LETS PLAY!")
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    return name
 
 class Board(object):
     size_x = 8
@@ -72,6 +73,7 @@ class Board(object):
             return False
 
     def user_guess(self):
+       # self.print(False)
         input_valid = False
         while input_valid is False:
             print(f"Guess a Row and Column between [0-{self.size_x - 1}]")
@@ -79,7 +81,7 @@ class Board(object):
             y = input(f'Column [0 - {self.size_y - 1}]: ')
             input_valid = self.guess_is_valid(x, y)
         self.attack_board(int(x), int(y), pc_board)
-        print(f"hit counter:{self.hits_counter}")
+        print(f"you have sank {self.hits_counter} of pc's battleships!")
         if self.hits_counter == self.ships_number:
             print("YOU HAVE HIT ALL PC SHIPS!")
 
@@ -89,28 +91,34 @@ class Board(object):
         """
     
     def attack_board(self, x, y, opponent):
-        #print(f'Attacking {opponent.values[x][y]}')
-        #print(f'opponent board position is: {opponent.values[x][y]}')
-        #print(f'ship symbol is: {self.ship_symbol}')
-        #print(f'{opponent.label} battleships prepare for incoming fire....')
+        print(f'{opponent.label} battleships prepare for incoming fire....')
         if opponent.values[x][y] == self.ship_symbol:
             print("HIT!")
             self.hits_counter = self.hits_counter + 1
 
             opponent.values[x][y] = self.hit
-            self.print(False)
+            if self.label == 'PC':
+                self.print(True)
+            else:
+                self.print(False)
+            return
 
         elif opponent.values[x][y] == self.empty_symbol:
             print("MISS!")
 
             opponent.values[x][y] = self.miss
-            self.print(False)
+            if self.label == 'PC':
+                self.print(True)
+            else:
+                self.print(False)
+            return
 
         else:
             print("You guessed that one already!")
             print("Please guess again")
             self.user_guess()
             self.pc_guess()
+            return
              
     def pc_guess(self):
         input_valid = False
@@ -125,23 +133,8 @@ class Board(object):
         if self.hits_counter == self.ships_number:
             print(f"ALL OF USERS BATTLESHIPS ARE DESTORYED")
 
-    
-    #def count_hit_ships(self, opponent):
-     #   ships_destroy = 0
-      #  while ships_destroy < self.ships_number:
-       #     hit_x = self.values[x]
-        #    hit_y = self.values[y]
-         #   self.values[hit_x][hit_y] = self.hit
-          #  ships_destroy = ships_destroy + 1
-           # if self.values[hit_x][hit_y] == self.hit and ships_destroy == self.ships_number:
-            #    print(f"ALL OF {opponent.label} BATTLESHIPS ARE DESTROYED!")
-
 def run_game(pc_board, user_board):
-    # pc_board.user_guess()
-    # user_board.pc_guess()
-    #pc_board.count_hit_ships()
-    #user_board.count_hit_ships()
-    turns = 10
+    turns = 15
     while turns > 0:
         user_board.user_guess()
         pc_board.pc_guess()
@@ -159,11 +152,11 @@ def run_game(pc_board, user_board):
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     again = input("Do you want to play again, type yes or press any key to quit?")
     print(again)
-    if again == "yes" or "Yes" or "YES" or "y":
+    if (again == "yes") or (again == "Yes") or (again == "YES") or (again == "y"):
         pc_board = Board("PC")
         pc_board.generate()
         pc_board.place_ships_auto()
-        pc_board.print(False)
+        pc_board.print(True)
         user_board = Board(name.capitalize() + "'s")
         user_board.generate()
         user_board.place_ships_auto()
@@ -171,19 +164,13 @@ def run_game(pc_board, user_board):
         run_game(pc_board, user_board)
     else:
         print(f"Thank you {name.capitalize()} for playing battleships! Come back soon!")
-          
-        #     #check if win or lose
-        # if Board.count_hit_ships(pc_board) == 5:
-        #     print("PC hit all 5 of your battleships!")
-        # elif Board.count_hit_ships(user_board) == 5:
-        #     print("You hit all 5 battleships!")
-        #     break
 
 if __name__ == "__main__":
+    name = start_game()
     pc_board = Board("PC")
     pc_board.generate()
     pc_board.place_ships_auto()
-    pc_board.print(False)
+    pc_board.print(True)
     user_board = Board(name.capitalize() + "'s")
     user_board.generate()
     user_board.place_ships_auto()
