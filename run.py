@@ -152,15 +152,7 @@ def run_game(pc_board, user_board):
     again = input("Do you want to play again, type yes or press any key to quit?")
     print(again)
     if (again == "yes") or (again == "Yes") or (again == "YES") or (again == "y"):
-        pc_board = Board("PC")
-        pc_board.generate()
-        pc_board.place_ships_auto()
-        pc_board.print(True)
-        user_board = Board(name.capitalize() + "'s")
-        user_board.generate()
-        user_board.place_ships_auto()
-        user_board.print(False)
-        run_game(pc_board, user_board)
+        print("Please press 'run program' to restart game")
     else:
         print(f"Thank you {name.capitalize()} for playing battleships!")
 
