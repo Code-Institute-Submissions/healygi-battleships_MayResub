@@ -1,21 +1,24 @@
 from random import randint
 
+
 def start_game():
     greeting = "Welcome to Battleships"
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print(greeting.upper())
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    #ask for players name
     name = input("What is your name Comrade?")
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("Hello " + name)
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("lets set out to sea and destroy the pc ships!!")
-    print("Instructions: Board size 7x7. Number of ships- 5. Top left corner is (row:0, column:0). Play against the computer and be the first to sink all 5 of your opponent's ships. You have 15 turns to win")
+    print("Instructions: Board size 7x7. Number of ships- 5. Top left corner is [row:0, column:0]")
+    print("Play against the computer and be the first to sink all 5 of your opponent's ships.") 
+    print("You have 15 turns to win")
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("LETS PLAY!")
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     return name
+
 
 class Board(object):
     size_x = 8
@@ -39,7 +42,6 @@ class Board(object):
             for column in range(0, self.size_x):
                 columns.append(self.empty_symbol)
             self.values.append(columns)
-    
     def print(self, hidden=True):
         print("    " + self.label + " Board")
         print("=====================")
@@ -73,7 +75,6 @@ class Board(object):
             return False
 
     def user_guess(self):
-       # self.print(False)
         input_valid = False
         while input_valid is False:
             print(f"Guess a Row and Column between [0-{self.size_x - 1}]")
@@ -89,7 +90,6 @@ class Board(object):
         if statment to check if guess is a hit or not. Attack
         method for computer and user to attack board
         """
-    
     def attack_board(self, x, y, opponent):
         print(f'{opponent.label} battleships prepare for incoming fire....')
         if opponent.values[x][y] == self.ship_symbol:
@@ -119,12 +119,11 @@ class Board(object):
             self.user_guess()
             self.pc_guess()
             return
-             
     def pc_guess(self):
         input_valid = False
         while input_valid is False:
-            x = randint(0, self.size_x -1)
-            y = randint(0, self.size_y -1)
+            x = randint(0, self.size_x - 1)
+            y = randint(0, self.size_y - 1)
             input_valid = self.guess_is_valid(x, y)
         print("Computers turn to attack")
         print("Shots fired....")
@@ -134,7 +133,7 @@ class Board(object):
             print(f"ALL OF USERS BATTLESHIPS ARE DESTORYED")
 
 def run_game(pc_board, user_board):
-    turns = 15
+    turns = 12
     while turns > 0:
         user_board.user_guess()
         pc_board.pc_guess()
@@ -145,7 +144,7 @@ def run_game(pc_board, user_board):
         if pc_board.hits_counter == user_board.ships_number:
             print(' PC WINS!!!!')
             turns = 0
-        if turns <= 5 :
+        if turns <= 5:
             print(f"You have {turns} turns remaining")
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("GAME OVER!")
@@ -163,7 +162,7 @@ def run_game(pc_board, user_board):
         user_board.print(False)
         run_game(pc_board, user_board)
     else:
-        print(f"Thank you {name.capitalize()} for playing battleships! Come back soon!")
+        print(f"Thank you {name.capitalize()} for playing battleships!")
 
 if __name__ == "__main__":
     name = start_game()
