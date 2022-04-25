@@ -154,7 +154,7 @@ def run_game(pc_board, user_board):
     again = input("Do you want to play again, type yes or press any key to quit?")
     print(again)
     if (again == "yes") or (again == "Yes") or (again == "YES") or (again == "y"):
-        print("Please press 'run program' to restart game")
+        print("Please press 'RUN PROGRAM' to restart game")
     else:
         print(f"Thank you {name.capitalize()} for playing battleships!")
 
