@@ -48,10 +48,9 @@ When the game is over the user is asked if they want to play again or quit the g
 
 # Data Model
 
-- I decided to use Board class as my model. The game creates two instances of the Board class to hold the user's and the pc's board. 
+- I decided to use Board class as my model as I thought it would allow me to code efficiently for creating a battleship game. It allowed me to create an instance of a board which could be generated for both the user and pc. 
 
-- The Board class stores the board size, the number of ships, the position of the ships, the guesses against that board, and details such as the board type (user's board or pc) and the user's name. 
-
+- The Board class stores the board size, the number of ships, the symbols that represent a hit, miss and a ship and details such as the values and the board type- 'label'.
 
 # Testing
 
@@ -92,6 +91,6 @@ This project was deployed using Code Institute's mock terminal for Heroku. Due t
 
 # Credits
 - Code Institue for the deloyment terminal.
-- My Mentor for his much valued time and help with understanding Python better. 
+- My Mentor for his much valued time and help with understanding Python. 
 - Code Insitute Tutor Support for help and guidance with my project. 
 - Slackover flow
