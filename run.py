@@ -1,5 +1,6 @@
 from random import randint
 
+#greeting function for user
 
 def start_game():
     greeting = "Welcome to Battleships"
@@ -19,7 +20,7 @@ def start_game():
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++")
     return name
 
-
+# model a board for user and pc
 class Board(object):
     size_x = 8
     size_y = 8
@@ -52,7 +53,7 @@ class Board(object):
                 formated_row = formated_row.replace(self.ship_symbol, self.empty_symbol) 
             print(formated_row)
         print("=====================")
-
+#randomly places ships on boards
     def place_ships_auto(self):
         ships_placed = 0
         while ships_placed < self.ships_number:
@@ -60,7 +61,7 @@ class Board(object):
             random_y = randint(0, self.size_y - 1)
             self.values[random_x][random_y] = self.ship_symbol
             ships_placed = ships_placed + 1
-
+#validates guesses
     def guess_is_valid(self, guess_x, guess_y):
         try:
             x = int(guess_x)
@@ -73,7 +74,7 @@ class Board(object):
         except:
             print('Please enter a integer number')
             return False
-
+#allows for user input to take guess at pc board
     def user_guess(self):
         input_valid = False
         while input_valid is False:
@@ -119,6 +120,7 @@ class Board(object):
             self.user_guess()
             self.pc_guess()
             return
+    #allows for pc to take guess at user board
     def pc_guess(self):
         input_valid = False
         while input_valid is False:
@@ -131,7 +133,7 @@ class Board(object):
         print(f'computer guess:[{int(x)} , {int(y)}]')
         if self.hits_counter == self.ships_number:
             print(f"ALL OF USERS BATTLESHIPS ARE DESTORYED")
-
+#loops through turns and alerts user or pc if they have won or if game is over. 
 def run_game(pc_board, user_board):
     turns = 12
     while turns > 0:
