@@ -4,9 +4,11 @@ Battleships is a Python terminal game, deployed on Heroku.
 
 Users can try to beat the pc by hitting all the pcs battleships before the pc finds theirs. Each battleship occupies one square on the board. 
 
+![battleship](bship/Battleship.png)
+
 # How to play
 
-Battleships is a strategy type guessing game for two players. Within this game, it is played on a grid where the user and the pc have a (7x7). Locations of the ships on the pc board are concealed from the user. All ships are positioned randomly. 
+Battleships is a strategy type guessing game for two players. It is played on a grid where the user and the pc have a (7x7) board. Locations of the ships on the pc board are concealed from the user. All ships are positioned randomly. 
 
 The user can see where its ships are placed indicated by an '0' but cannot see where the computers ships are. Guesses are marked with '-' and hits are indicated by 'X'.
 
@@ -19,15 +21,23 @@ When the game is over the user is asked if they want to play again or quit the g
 ## Random board generation:
 - Ships are randomly placed on both the player and computer boards
 - The player cannot see where the computer's ships are
+![boards](bship/boards.png)
 - user vs the pc
 - Accepts user input
 - Counts number of hit ships
 - Counts number of turns
+![hits](bship/hit_update.png)
+![counter](bship/counter_updates.png)
 
 ## Input validation and error-checking:
 - You cannot enter coordinates outside the size of the grid
 - You must enter integers
 - You cannot enter the same guess twice
+![incorrect_guess](bship/incorrect_guess.png)
+
+## Game over
+- When the user has ran out of turns or hit all the pcs ships or vice versa - they will get the messsage to play again or quit. 
+![game_over](bship/game_over.png)
 
 # Future Features
 
@@ -54,8 +64,10 @@ I have manually tested this project by doing the following:
 # Bugs
 
 ## Solved Bugs
-- I had my board set to (0-8) coordinates. This caused my game to crash when I guess (8,8) or (0,0). I forgot zero indexed- I fixed this by adding -1 when needed. 
-- I set up a while loop to count 15 turns until the game was over. I discovered that when you hit all ships before your number of turns was up the game would continue. I fixed this by adding a 
+- I had my board set to (0-8) coordinates. This caused my game to crash when I guessed (8,8) or (0,0). I forgot zero indexed- I fixed this by adding '- 1' when needed. 
+- I set up a while loop to count 15 turns until the game was over. I discovered that when you hit all ships before your number of turns was up the game would continue. I fixed this by adding a hit counter to count the number of hit ships. If all ships are hit it changes the number of turns to 0 and gives a 'user win' message to the user.
+- I managed to hide the ships on pc board up until the user took a guess. When the user took a guess it regenerated the board with hit or miss and exposed the ships on the pc board. In hindsight my design of 'opponets board' may have not been a good idea as it is hard to isolate and update the boards separately. I fixed this bug by adding and if statement to attack_board and using 'self.label' to check which board was which - meaning if it was pc board ships would remain hidden. 
+- I noticed that when the game was over and the player asked to play again the boards would regenerate but the values did not update so the score and guesses remained the same. I found this bug the day of submission and so did not have enough time to fix this bug. Instead I decided not to regenerate the board but put in a print statement instead for the user to press 'RUN PROGRAM' at the top of the page if they wanted to play again. 
 
 ## Remaining Bugs
 - No bugs remaining
