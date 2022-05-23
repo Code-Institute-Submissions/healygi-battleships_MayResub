@@ -59,6 +59,8 @@ I have manually tested this project by doing the following:
 - Passed my project through PEP8 online checker and confirmed there were no issues. 
 - Tested my project by giving it invaild inputs: letters when numbers were expected, guesses outside the range of my board, same input twice. 
 - Tested it in both my local terminal and the Code Institute Heroku terminal. 
+- Fixed uses as described in problems section of the terminal. 
+- Tested by a third party, with focus on invalid input. 
 
 # Bugs
 
@@ -75,6 +77,10 @@ I have manually tested this project by doing the following:
 
 - PEP8online.com:
 No errors were returned.
+![pep8](bship/pep8.png)
+
+- I cleared all errors in PEP8. There were a lot of line errors and whitespace errors. For furture reference I would run my game through PEP8 continously throughout the coding process to clear errors early-on. 
+- I fixed most problems in the terminal - problems section - the problems that remains are 'missing module docstring' for a couple of my functions and methods. I have a python comment put in place to describe my functions/methods - I did not need a docstring as the explanation was short. 
 
 # Deployment 
 
