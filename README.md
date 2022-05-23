@@ -16,6 +16,10 @@ The pc and user take turns to try there shot at sinking each others ships. The w
 
 When the game is over the user is asked if they want to play again or quit the game. 
 
+# Flowchart
+
+![flowchart](bship/flowchart.png)
+
 # Features
 
 ## Random board generation:
