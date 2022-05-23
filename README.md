@@ -56,6 +56,11 @@ When the game is over the user is asked if they want to play again or quit the g
 
 - The Board class stores the board size, the number of ships, the symbols that represent a hit, miss and a ship and details such as the values and the board type- 'label'.
 
+## Programmes and tools
+
+- PEP8 to validate the code
+- Lucidchart to create the above flowchart
+
 # Testing
 
 I have manually tested this project by doing the following:
@@ -63,7 +68,7 @@ I have manually tested this project by doing the following:
 - Passed my project through PEP8 online checker and confirmed there were no issues. 
 - Tested my project by giving it invaild inputs: letters when numbers were expected, guesses outside the range of my board, same input twice. 
 - Tested it in both my local terminal and the Code Institute Heroku terminal. 
-- Fixed uses as described in problems section of the terminal. 
+- Fixed issues as described in problems section of the terminal. 
 - Tested by a third party, with focus on invalid input. 
 
 # Bugs
